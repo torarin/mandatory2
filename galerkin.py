@@ -402,10 +402,7 @@ def L2_error(uh, ue, V, kind='norm'):
     d = V.domain
     uej = sp.lambdify(x, ue)
     def uv(xj): return (uej(xj)-V.eval(uh, xj))**2
-    if kind == 'norm':
-        return np.sqrt(quad(uv, float(d[0]), float(d[1]))[0])
-    elif kind == 'inf':
-        return max(abs(uj-uej))
+    return np.sqrt(quad(uv, float(d[0]), float(d[1]))[0])
 
 
 def test_project():
